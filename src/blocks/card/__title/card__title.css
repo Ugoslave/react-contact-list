@@ -1,0 +1,10 @@
+.card__title {
+  margin: 0;
+  color: #fff;
+  max-width: 400px;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 24px;
+  text-align: center;
+  padding: 20px 0;
+}

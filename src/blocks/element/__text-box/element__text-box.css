@@ -1,0 +1,11 @@
+.element__text-box {
+  margin: 0;
+  padding-top: 10px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.element__text-box:hover {
+  cursor: pointer;
+}

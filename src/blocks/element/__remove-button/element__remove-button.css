@@ -1,0 +1,17 @@
+.element__remove-button {
+  margin: 0;
+  background-color: transparent;
+  border-radius: 10px;
+  width: 60px;
+  height: 60px;
+  border: 0;
+  padding: 0;
+  outline: none;
+  transition: opacity .7s ease;
+  box-shadow: 0 2px 5px red;
+}
+
+.element__remove-button:hover {
+  opacity: .6;
+  cursor: pointer;
+}

@@ -1,0 +1,17 @@
+.header {
+  box-sizing: border-box;
+  border-bottom: solid rgba(84, 84, 84, .7) 1px;
+  padding: 20px 37px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid rgb(77, 3, 3) 2px;
+  box-shadow: 0 15px 30px red;
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .header {
+    padding-bottom: 28px;
+  }
+}

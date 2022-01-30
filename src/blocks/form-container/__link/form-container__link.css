@@ -1,0 +1,11 @@
+.form-container__link {
+  margin: 0;
+  padding: 5px;
+  text-decoration: none;
+  color: #fff;
+  transition: opacity .7s ease;
+}
+
+.form-container__link:hover {
+  opacity: .8;
+}

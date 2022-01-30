@@ -1,0 +1,34 @@
+.elements {
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  height: 500px;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.elements::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .elements {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .elements {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
