@@ -6,7 +6,7 @@ import addButton from "../images/contacts-container-add-button.svg";
 function Main({
   onEditAvatar,
   onEditProfile,
-  onAddPlace,
+  onAddStaffer,
   onCardClick,
   cards,
   onCardLike,
@@ -29,7 +29,7 @@ function Main({
         <button
           type="button"
           className="element__remove-button" 
-          onClick={onAddPlace}
+          onClick={onAddStaffer}
         >
           <img src={addButton} alt="Добавить контакт" />
         </button>

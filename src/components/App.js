@@ -107,7 +107,7 @@ function App() {
     setIsEditAvatarPopupOpen(true);
   }
 
-  function handleAddPlaceClick() {
+  function handleAddStafferClick() {
     setIsAddPlacePopupOpen(true);
   }
 
@@ -127,14 +127,9 @@ function App() {
 
   
 
-  function handleAddPlaceSubmit(evt) {
-    api
-      .addCard(evt)
-      .then((res) => {
-        setCards([res, ...cards]);
-        closeAllPopups();
-      })
-      .catch((err) => console.log(err));
+  function handleAddStafferSubmit(evt) {
+      setCards([evt, ...contacts]);
+      closeAllPopups();
   }
 
   function closeAllPopups() {
@@ -164,7 +159,7 @@ function App() {
             component={Main}
             userEmail={userEmail}
             onSignOut={signOut}
-            onAddPlace={handleAddPlaceClick}
+            onAddStaffer={handleAddStafferClick}
             onEditAvatar={handleEditAvatarClick}
             onCardClick={handleCardClick}
             cards={cards}
@@ -176,7 +171,7 @@ function App() {
       <AddPlacePopup
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
-        onAddPlace={handleAddPlaceSubmit}
+        onAddStaffer={handleAddStafferSubmit}
       />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       <EditAvatarPopup
