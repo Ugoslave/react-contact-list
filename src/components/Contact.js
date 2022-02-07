@@ -1,21 +1,19 @@
+import React from "react";
 import removeButton from "../images/element-removeButton.svg";
 import editButton from "../images/element-editButton.svg";
-import likeButton from "../images/element-like.svg";
-import React from "react";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Card({ card, onCardClick, onCardLike, onCardDelete }) {
+function Contact({ card, onCardClick, onCardDelete, onEditCard }) {
 
   function handleClick() {
     onCardClick(card);
   }
 
-  function handleLikeClick() {
-    onCardLike(card);
+  function handleEditClick() {
+    onEditCard(card);
   }
 
-  function handleDeleteClick() {
-    onCardDelete(card);
+  function handleDeleteClick(evt) {
+    onCardDelete(evt);
   }
 
   return (
@@ -34,13 +32,14 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
       </div>
       <button
         type="button"
-        className="element__remove-button" 
+        className="element__button" 
+        onClick ={handleEditClick} 
       >
         <img src={editButton} alt="Редактировать" />
       </button>
       <button
         type="button"
-        className="element__remove-button" 
+        className="element__button" 
         onClick={handleDeleteClick}
       >
         <img src={removeButton} alt="Удалить" />
@@ -49,4 +48,4 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   );
 }
 
-export default Card;
+export default Contact;

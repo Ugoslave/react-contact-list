@@ -1,38 +1,33 @@
-import Header from "./Header";
-import Main from "./Main";
-import Footer from "./Footer";
-import PopupWithForm from "./PopupWithForm";
-import ImagePopup from "./ImagePopup";
 import React from "react";
-import api from "../utils/api";
 import { Route, Switch, useHistory } from "react-router-dom";
+import Header from "./Header";
 import Login from "./Login";
 import Register from "./Register";
-import EditAvatarPopup from "./EditAvatarPopup";
-import AddPlacePopup from "./AddPlacePopup";
-import avatarLoader from "../images/profile-avatar-loader.gif";
+import Main from "./Main";
+import ProtectedRoute from "./ProtectedRoute";
+import contacts from "../constants/contacts";
+import Footer from "./Footer";
+import AddStafferPopup from "./AddStafferPopup";
+import StafferDataPopup from "./StafferDataPopup";
 import InfoTooltip from "./InfoTooltip";
 import successImage from "../images/register-popup-success.svg";
 import failImage from "../images/register-popup-fail.svg";
 import * as authorization from "../utils/authorization.js";
-import ProtectedRoute from "./ProtectedRoute";
-import contacts from "../constants/contacts";
 
 function App() {
 
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
-
+  const [isEditStafferData, setIsEditStafferData] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
-  
-  const [cards, setCards] = React.useState([]);
+  const [selectedContact, setSelectedContact] = React.useState(null);
+  const [elements, setElements] = React.useState([]);
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const historyLogin = useHistory();
-
   const [userEmail, setUserEmail] = React.useState("");
   const [successRegister, setSuccessRegister] = React.useState(false);
-
+  const[indexElement, setIndexElement] = React.useState(null);
+  const historyLogin = useHistory();
+  
   React.useEffect(() => {
     const jwt = localStorage.getItem("token");
 
@@ -86,26 +81,13 @@ function App() {
       });
   }
 
-  
-
-  function handleCardDelete(card) {
-    api
-      .removeElement(card._id)
-      .then(setCards((state) => state.filter((c) => c._id !== card._id)))
-      .catch((err) => console.log(err));
-  }
-
   function getAllContacts() {
-    setCards(contacts);
+    setElements(contacts);
   }
 
   React.useEffect(() => {
     getAllContacts();
   }, []);
-
-  function handleEditAvatarClick() {
-    setIsEditAvatarPopupOpen(true);
-  }
 
   function handleAddStafferClick() {
     setIsAddPlacePopupOpen(true);
@@ -124,19 +106,35 @@ function App() {
     setSelectedCard(selectedCard);
   }
 
-
+  function handleCardDelete(evt) {
+    const targetElement = evt.target.closest(".element");
+    targetElement.remove();
+  }
   
-
   function handleAddStafferSubmit(evt) {
-      setCards([evt, ...contacts]);
-      closeAllPopups();
+    setElements([evt, ...contacts]);
+    closeAllPopups();
+  }
+
+  function handleEditStafferData(evt) {
+    handleAddStafferClick();
+    setIsEditStafferData(true);
+    setSelectedContact(evt);
+    setIndexElement(contacts.findIndex(n => n.id === evt.id));
+  }
+
+  function handleChangeStafferData(evt) {
+    contacts.splice(indexElement, 1, evt);
+    setElements(contacts);
+    closeAllPopups();
   }
 
   function closeAllPopups() {
-    setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setSelectedCard(null);
+    setIsEditStafferData(false);
     setIsInfoTooltipOpen(false);
+    setIndexElement(null);
   }
 
   return (
@@ -160,29 +158,22 @@ function App() {
             userEmail={userEmail}
             onSignOut={signOut}
             onAddStaffer={handleAddStafferClick}
-            onEditAvatar={handleEditAvatarClick}
             onCardClick={handleCardClick}
-            cards={cards}
+            elements={elements}
             onCardDelete={handleCardDelete}
+            onEditCard={handleEditStafferData}
           />
         </Switch>
         <Footer />
       </div>
-      <AddPlacePopup
+      <AddStafferPopup
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
-        onAddStaffer={handleAddStafferSubmit}
+        onAddStaffer={isEditStafferData ? handleChangeStafferData : handleAddStafferSubmit}
+        isEdit={isEditStafferData}
+        card={selectedContact}
       />
-      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-      <EditAvatarPopup
-        isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}
-      />
-      <PopupWithForm
-        name="remove-confirmation"
-        title="Вы уверены?"
-        buttonText="Да"
-      />
+      <StafferDataPopup card={selectedCard} onClose={closeAllPopups} />
       <InfoTooltip
         text={
           successRegister

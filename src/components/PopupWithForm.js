@@ -7,7 +7,7 @@ function PopupWithForm(props) {
         props.isOpen && "popup_active"
       }`}
     >
-      <div className={`popup__container popup__container_place_${props.name}`}>
+      <div className="popup__container">
         <button
           type="button"
           className="popup__button-close"
@@ -20,7 +20,7 @@ function PopupWithForm(props) {
           />
         </button>
         <div className="popup__content-box">
-          <h2 className={`popup__title popup__title_place_${props.name}`}>
+          <h2 className="popup__title">
             {props.title}
           </h2>
           <form

@@ -1,28 +1,17 @@
 .element__button {
   margin: 0;
   background-color: transparent;
-  max-width: 21px;
-  max-height: 18px;
+  border-radius: 10px;
+  width: 60px;
+  height: 60px;
   border: 0;
   padding: 0;
   outline: none;
   transition: opacity .7s ease;
+  box-shadow: 0 2px 5px red;
 }
 
 .element__button:hover {
-  opacity: .5;
+  opacity: .6;
   cursor: pointer;
-}
-
-@keyframes scale {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(2);
-  }
-}
-
-.element__button:focus {
-  animation: scale .3s ease 1 reverse backwards;
 }

@@ -1,18 +1,16 @@
 import React from "react";
-import Card from "./Card";
+import Contact from "./Contact";
 import Header from "./Header";
 import addButton from "../images/contacts-container-add-button.svg";
 
 function Main({
-  onEditAvatar,
-  onEditProfile,
   onAddStaffer,
   onCardClick,
-  cards,
-  onCardLike,
+  elements,
   onCardDelete,
   userEmail,
   onSignOut,
+  onEditCard
 }) {
 
   return (
@@ -23,26 +21,23 @@ function Main({
         userEmail={userEmail}
         onSignOut={onSignOut}
       />
-
       <section className="contacts-container">
-    
         <button
           type="button"
-          className="element__remove-button" 
+          className="element__button element__button_section-place" 
           onClick={onAddStaffer}
         >
           <img src={addButton} alt="Добавить контакт" />
         </button>
-
         <ul className="elements">
-          {cards.map((i) => {
+          {elements.map((i) => {
             return (
-              <Card
-                key={i.tel}
+              <Contact
+                key={i.id}
                 card={i}
                 onCardClick={onCardClick}
-                onCardLike={onCardLike}
                 onCardDelete={onCardDelete}
+                onEditCard={onEditCard}
               />
             );
           })}

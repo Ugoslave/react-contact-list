@@ -36,7 +36,7 @@ function Login({ onLogin }) {
           value={email}
           onChange={handleEmailChange}
         />
-        <span className="form__input-error" />
+        <span className="popup__input-error" />
         <input
           required
           type="password"
@@ -48,7 +48,7 @@ function Login({ onLogin }) {
           value={password}
           onChange={handlePasswordChange}
         />
-        <span className="form__input-error" />
+        <span className="popup__input-error" />
 
         <button type="submit" className="contact-form__button">
           Войти

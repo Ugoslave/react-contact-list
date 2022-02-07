@@ -6,14 +6,16 @@ function InfoTooltip({ text, imageLink, onClose, isOpen }) {
       className={`popup popup_place_register-popup ${isOpen && "popup_active"}`}
     >
       <div className="popup__container popup__container_place_register-popup">
-        <button type="button" className="popup__button-close" onClick={onClose}>
-          <img
-            src={closeButton}
-            alt="Закрыть"
-            className="popup__button-image"
-          />
+        <button 
+          type="button" 
+          className="popup__button-close" 
+          onClick={onClose}>
+            <img
+              src={closeButton}
+              alt="Закрыть"
+              className="popup__button-image"
+            />
         </button>
-
         <figure className="popup__content-box popup__content-box_place_register-popup">
           <img
             src={imageLink}

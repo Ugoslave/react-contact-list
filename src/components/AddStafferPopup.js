@@ -1,7 +1,7 @@
 import PopupWithForm from "./PopupWithForm";
 import React from "react";
 
-function AddPlacePopup({ isOpen, onClose, onAddStaffer }) {
+function AddStafferPopup({ isOpen, onClose, onAddStaffer, isEdit, card }) {
   
   const [newAvatarLink, setNewAvatarLink] = React.useState("");
   const [newStafferName, setNewStafferName] = React.useState("");
@@ -37,16 +37,27 @@ function AddPlacePopup({ isOpen, onClose, onAddStaffer }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-
     onAddStaffer({
       avatar: newAvatarLink,
       name: newStafferName, 
       surname: newStafferSurname, 
       tel: newPhoneNumber, 
       email: newEmail, 
-      spec: newStafferSpec,
+      spec: newStafferSpec, 
+      id: `${Math.floor(Math.random() * 76352087)}`,
     });
   }
+
+  React.useEffect(() => {
+    if (isEdit === true) {
+      setNewAvatarLink(card.avatar);
+      setNewStafferName(card.name);
+      setNewStafferSurname(card.surname);
+      setNewPhoneNumber(card.tel);
+      setNewEmail(card.email);
+      setNewStafferSpec(card.spec);
+    }
+  }, [isEdit]);
 
   React.useEffect(() => {
     if (isOpen === false) {
@@ -74,13 +85,11 @@ function AddPlacePopup({ isOpen, onClose, onAddStaffer }) {
         id = "user-avatar" 
         placeholder="Ссылка на аватар" 
         minLength="10" 
-        className = "contact-form__input contact-form__input_data_avatar" 
-
+        className = "contact-form__input" 
         value={newAvatarLink}
         onChange={handleAvatarInputChange}
       />
       <span id="user-avatar-error" className="popup__input-error" />
-
       <input
         required 
         type = "text" 
@@ -88,13 +97,11 @@ function AddPlacePopup({ isOpen, onClose, onAddStaffer }) {
         id = "user-name" 
         placeholder="Имя сотрудника" 
         minLength="1" maxLength="30" 
-        className = "contact-form__input contact-form__input_data_name" 
-
+        className = "contact-form__input" 
         value={newStafferName}
         onChange={handleNameInputChange}
       />
       <span id="user-name-error" className="popup__input-error" />
-
       <input 
         required 
         type = "text" 
@@ -103,12 +110,11 @@ function AddPlacePopup({ isOpen, onClose, onAddStaffer }) {
         placeholder="Фамилия сотрудника" 
         minLength="1" 
         maxLength="40" 
-        className = "contact-form__input contact-form__input_data_surname" 
+        className = "contact-form__input" 
         value={newStafferSurname}
         onChange={handleSurnameInputChange}
       />
       <span id="user-surname-error" className="popup__input-error" />
-
       <input 
         required 
         type = "tel" 
@@ -117,12 +123,11 @@ function AddPlacePopup({ isOpen, onClose, onAddStaffer }) {
         placeholder="Номер телефона" 
         minLength="5" 
         maxLength="15" 
-        className = "contact-form__input contact-form__input_data_phone" 
+        className = "contact-form__input" 
         value={newPhoneNumber}
         onChange={handlePhoneInputChange}
       />
       <span id="user-phone-error" className="popup__input-error" />
-
       <input 
         required 
         type = "email" 
@@ -130,13 +135,12 @@ function AddPlacePopup({ isOpen, onClose, onAddStaffer }) {
         id = "user-email" 
         placeholder="Адрес электронной почты" 
         minLength="6" 
-        maxLength="20" 
-        className = "contact-form__input contact-form__input_data_email" 
+        maxLength="50" 
+        className = "contact-form__input" 
         value={newEmail}
         onChange={handleEmailInputChange}
       />
       <span id="user-email-error" className="popup__input-error" />
-
       <input 
         required 
         type = "text" 
@@ -145,14 +149,13 @@ function AddPlacePopup({ isOpen, onClose, onAddStaffer }) {
         placeholder="Специальность" 
         minLength="5" 
         maxLength="50" 
-        className = "contact-form__input contact-form__input_data_speciality" 
+        className = "contact-form__input" 
         value={newStafferSpec}
         onChange={handleSpecialityInputChange}
       />
       <span id="user-speciality-error" className="popup__input-error" />
-
     </PopupWithForm>
   );
 }
 
-export default AddPlacePopup;
+export default AddStafferPopup;

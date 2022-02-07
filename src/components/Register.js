@@ -44,7 +44,7 @@ function Register({ onRegister }) {
             value={email}
             onChange={handleEmailChange}
           />
-          <span className="form__input-error" />
+          <span className="popup__input-error" />
           <input
             required
             type="password"
@@ -56,17 +56,17 @@ function Register({ onRegister }) {
             value={password}
             onChange={handlePasswordChange}
           />
-          <span className="form__input-error" />
+          <span className="popup__input-error" />
 
           <button type="submit" className="contact-form__button">
             Зарегистрироваться
           </button>
         </form>
       </div>
-      <p className="form-container__text">
+      <p className="contact-form__text">
         Уже зарегистрированы?
         <Link to="/sign-in">
-          <span className="form-container__link">Войти</span>
+          <span className="contact-form__link">Войти</span>
         </Link>
       </p>
     </>

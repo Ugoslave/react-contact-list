@@ -1,12 +1,12 @@
 import closeButton from "../images/popup-closeButton.svg";
 
-function ImagePopup({ card, onClose }) {
+function StafferDataPopup({ card, onClose }) {
   return (
     <div className={`popup popup_place_image-popup ${card && "popup_active"}`}>
-      <div className="popup__container popup__container_place_image-popup">
+      <div className="popup__container">
         <button
           type="button"
-          className="popup__button-close popup__button-close_place_image-popup"
+          className="popup__button-close"
           onClick={onClose}
         >
           <img
@@ -33,4 +33,4 @@ function ImagePopup({ card, onClose }) {
   );
 }
 
-export default ImagePopup;
+export default StafferDataPopup;
